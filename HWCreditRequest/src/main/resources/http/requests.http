@@ -1,0 +1,17 @@
+### Заявка на кредит
+
+POST http://localhost:5500/create
+Content-Type: application/json
+
+{
+	"amount": 100000,
+    "term": 12,
+    "income": 50000,
+    "credit_load": 10000,
+    "rating": 5
+}
+
+### Проверка статуса
+
+GET http://localhost:5500/status/1
+

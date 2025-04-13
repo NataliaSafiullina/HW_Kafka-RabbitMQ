@@ -1,0 +1,19 @@
+spring:
+  amqp:
+    deserialization:
+      trust-all: true
+
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+kafka:
+  topics:
+    credit-request: credit-request
+
+rabbitmq:
+  queues:
+    credit-app: credit-app
