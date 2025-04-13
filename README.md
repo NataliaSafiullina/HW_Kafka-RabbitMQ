@@ -27,4 +27,18 @@
 
 ### 3 Добавить файл docker-compose для развёртывания приложения
 
+Работает, выполнить:
+HW_Kafka-RabbitMQ\HWCreditRequest> docker-compose up -d
+
+Запустятся контейнер hwcreditrequest с контейнерами:
+- rabbitmq-1
+- zookeeper-1
+- kafka-1
+- mysql_db-1
+
+
 ### 4 Добавить файл http, содержащий запросы для заявки на кредит и получения статуса заявки на кредит
+
+Приложила коллекцию Postman:
+
+Credit Request (Kafka, RabbitMQ).postman_collection.json
