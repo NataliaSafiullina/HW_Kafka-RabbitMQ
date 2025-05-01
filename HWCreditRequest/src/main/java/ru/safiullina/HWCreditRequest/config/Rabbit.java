@@ -59,21 +59,6 @@ public class Rabbit {
         return factory;
     }
 
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        return new CachingConnectionFactory("localhost");
-    }
-
-    @Bean
-    public AmqpAdmin amqpAdmin() {
-        return new RabbitAdmin(connectionFactory());
-    }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate() {
-        return new RabbitTemplate(connectionFactory());
-    }
-
     @RabbitListener(queues = "creditapp")
     public void listenCreditDecision(CreditDecisionEvent creditDecisionEvent) {
         System.out.println("Consume message: " + creditDecisionEvent);
