@@ -22,4 +22,4 @@ kafka:
 
 rabbitmq:
   queues:
-    credit-app: credit-app
+    creditapp: creditapp
