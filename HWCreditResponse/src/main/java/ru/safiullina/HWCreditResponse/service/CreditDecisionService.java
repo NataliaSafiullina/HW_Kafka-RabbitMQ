@@ -1,5 +1,6 @@
 package ru.safiullina.HWCreditResponse.service;
 
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -23,6 +24,13 @@ public class CreditDecisionService {
             event.setStatus("approved");
         }
         System.out.println("Send decision. " + event);
-        rabbitTemplate.convertAndSend(event);
+
+        try {
+            rabbitTemplate.convertAndSend("creditapp", event);
+            System.out.println("Сообщение успешно отправлено в очередь.");
+        } catch (AmqpException e) {
+            System.out.println("Ошибка отправки сообщения: " + e);
+        }
+
     }
 }

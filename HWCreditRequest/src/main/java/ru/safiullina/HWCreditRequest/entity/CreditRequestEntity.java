@@ -42,7 +42,7 @@ public class CreditRequestEntity {
     private int rating;
 
     @Column(name = "status")
-    private String status = "in processing";
+    private String status;
 
     public CreditRequestEntity(float amount, int term, float income, float credit_load, int rating) {
         this.amount = amount;

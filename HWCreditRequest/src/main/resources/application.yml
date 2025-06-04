@@ -1,4 +1,19 @@
 spring:
+
+  application:
+    name: HWCreditRequest
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/netology
+    username: root
+    password: pass
+    platform: mysql
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
   amqp:
     deserialization:
       trust-all: true
@@ -23,3 +38,6 @@ kafka:
 rabbitmq:
   queues:
     creditapp: creditapp
+
+server:
+  port: 5500

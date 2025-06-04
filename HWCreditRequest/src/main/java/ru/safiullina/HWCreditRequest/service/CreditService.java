@@ -2,10 +2,13 @@ package ru.safiullina.HWCreditRequest.service;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.safiullina.CreditDecisionEvent;
 import ru.safiullina.HWCreditRequest.dto.CreditRequestDto;
 import ru.safiullina.HWCreditRequest.entity.CreditRequestEntity;
 import ru.safiullina.HWCreditRequest.repository.CreditRepository;
+
+import java.util.Optional;
 
 @Service
 public class CreditService {
@@ -42,8 +45,22 @@ public class CreditService {
                 null;
     }
 
+    @Transactional
     public void saveCreditDecision(CreditDecisionEvent creditDecisionEvent) {
-        System.out.println("Save event-decision: " + creditDecisionEvent);
-        creditRepository.setStatusById(creditDecisionEvent.getStatus(), creditDecisionEvent.getId());
+
+        try {
+            System.out.println("Save event-decision: " + creditDecisionEvent);
+            Optional<CreditRequestEntity> entity = creditRepository.findById(creditDecisionEvent.getId());
+            if (entity.isPresent()){
+                System.out.println("Нашли запись по ID. " + entity.toString());
+                System.out.println(creditDecisionEvent.getStatus() + " " + creditDecisionEvent.getId());
+                creditRepository.updateStatusById(creditDecisionEvent.getStatus(), creditDecisionEvent.getId());
+            }
+
+
+        } catch (Exception ex) {
+            System.out.println("Ошибка при обработке сообщения: " + ex);
+        }
+
     }
 }
