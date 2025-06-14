@@ -44,3 +44,25 @@ services:
       MYSQL_PASSWORD: pass
     volumes:
       - ./dbdata:/var/lib/mysql/
+
+
+  credit_app:
+    image: 'credit_app:latest'
+    container_name: credit_app
+    depends_on:
+      - kafka
+      - rabbitmq
+      - mysql_db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/netology
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pass
+    ports:
+      - '5500:5500'
+
+  credit_decision:
+    image: "credit_decision:latest"
+    container_name: credit_decision
+    depends_on:
+      - kafka
+      - rabbitmq
