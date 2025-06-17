@@ -17,6 +17,7 @@ spring:
   amqp:
     deserialization:
       trust-all: true
+
   kafka:
     # Перечисляем всех наших брокеров
     bootstrap-servers: host.docker.internal:29092
@@ -25,6 +26,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       enable-metrics-push: false
+
   rabbitmq:
     host: localhost
     port: 5672
@@ -37,7 +39,7 @@ kafka:
 
 rabbitmq:
   queues:
-    creditapp: creditapp
+    credit_decision: credit_decision
 
 server:
   port: 5500

@@ -31,7 +31,7 @@ public class RabbitConfig {
      */
     @Bean
     public Queue creditDecisionQueue() {
-        return new Queue("creditapp");
+        return new Queue("credit_decision");
     }
 
     /**

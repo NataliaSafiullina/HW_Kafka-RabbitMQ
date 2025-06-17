@@ -44,7 +44,7 @@ public class Rabbit {
      */
     @Bean
     public Queue creditDecisionQueue() {
-        return new Queue("creditapp", true);
+        return new Queue("credit_decision", true);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Rabbit {
         return factory;
     }
 
-    @RabbitListener(queues = "creditapp")
+    @RabbitListener(queues = "credit_decision")
     public void listenCreditDecision(CreditDecisionEvent creditDecisionEvent) {
         System.out.println("Consume message: " + creditDecisionEvent);
         service.saveCreditDecision(creditDecisionEvent);

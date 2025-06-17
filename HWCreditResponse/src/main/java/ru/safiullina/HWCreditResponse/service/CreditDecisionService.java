@@ -26,7 +26,7 @@ public class CreditDecisionService {
         System.out.println("Send decision. " + event);
 
         try {
-            rabbitTemplate.convertAndSend("creditapp", event);
+            rabbitTemplate.convertAndSend("credit_decision", event);
             System.out.println("Сообщение успешно отправлено в очередь.");
         } catch (AmqpException e) {
             System.out.println("Ошибка отправки сообщения: " + e);
